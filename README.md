@@ -67,7 +67,7 @@ Most music bots are basic command-line wrappers (`!play url`) or slow, expensive
 
 ## 🏗 How the Whole Application Works (System Architecture)
 
-Here is how the entire application is structured—from your input in Telegram, through the 4 core engines inside [`main.py`](file:///Users/gin/Documents/spotify/spotify-telegram-bot-v2/main.py), out to your Spotify player and lyrics databases:
+Here is how the entire application is structured—from your input in Telegram, through the 4 core engines inside [`main.py`](spotify-telegram-bot-v2/main.py), out to your Spotify player and lyrics databases:
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────────────────────────────────┐
@@ -83,7 +83,7 @@ Here is how the entire application is structured—from your input in Telegram, 
                                     Taps Menu / Controls / Types ~ * !
                                                     ▼
 ┌─────────────────────────────────────────────────────────────────────────────────────────────────────┐
-│                                   🤖 THE BARONESS CORE (main.py)                                    │
+│                                   🤖 THE BARONESS CORE (spotify-telegram-bot-v2/main.py)                                    │
 │                                                                                                     │
 │  ┌──────────────────────┐  ┌──────────────────────┐  ┌──────────────────────┐  ┌─────────────────┐  │
 │  │ 1. CURATION ENGINE   │  │ 2. 15-BTN REMOTE DECK│  │ 3. LYRICS PIPELINE   │  │ 4. PERSONA &    │  │
@@ -114,7 +114,7 @@ Here is how the entire application is structured—from your input in Telegram, 
 flowchart TB
     User["📱 You on Telegram<br/>(Solo Daily Use or Optional Party Mode)"] -->|"Slash Commands (/select, /controls)<br/>Text Shortcuts (~song, *mood, !artist)<br/>or 15-Button Inline Deck"| Core
 
-    subgraph Core["🤖 The Baroness Core Application (main.py)"]
+    subgraph Core["🤖 The Baroness Core Application (spotify-telegram-bot-v2/main.py)"]
         direction LR
         Persona["🎭 Zero-AI Regency Persona<br/>(Instant Bridgerton commentary)"]
         Discovery["🔍 7-Mode Curation Engine<br/>(Charts · Moods · Search · Artist · Playlists · Random)"]
@@ -133,7 +133,7 @@ flowchart TB
 
 ### How It Works as a Whole:
 1. **Your Input in Telegram:** You interact with the bot using slash commands (`/select`, `/controls`, `/nowplaying`, `/devices`), quick text prefixes (`~song`, `*mood`, `!artist`), or the 15-button remote control deck.
-2. **Four Core Engines in [`main.py`](file:///Users/gin/Documents/spotify/spotify-telegram-bot-v2/main.py):**
+2. **Four Core Engines in [`main.py`](spotify-telegram-bot-v2/main.py):**
    - **Curation Engine:** Searches Spotify's catalog using genre taxonomies, live chart playlists, wildcard sampling, or your personal playlists to pick a playable song.
    - **Remote & Library Controller:** Adjusts transport (Play/Pause/Next/Prev), volume (`±10%`), shuffle/repeat, adds to your queue, saves tracks to your Liked Songs or playlists, and switches active devices.
    - **Zero-AI Regency Persona:** Wraps every recommendation and status card in custom *Bridgerton*-style commentary generated deterministically in under 5ms.
@@ -281,21 +281,19 @@ Below is a live walkthrough and labeled interface showcase of **The Baroness (`@
 ### 2. Installation
 
 ```bash
-cd /Users/gin/Documents/spotify/spotify-telegram-bot-v2
+git clone https://github.com/ginnnn-e/spotify.git
+cd spotify/spotify-telegram-bot-v2
 
-# Option A: Use existing virtual environment
-source ../spotify-telegram-bot/bin/activate
-
-# Option B: Create a fresh virtual environment
-# python3 -m venv venv
-# source venv/bin/activate
+# Create and activate a virtual environment
+python3 -m venv venv
+source venv/bin/activate
 
 pip install -r requirements.txt
 ```
 
 ### 3. Environment Variables (`.env`)
 
-Copy [`.env.example`](file:///Users/gin/Documents/spotify/spotify-telegram-bot-v2/.env.example) to `.env` in `spotify-telegram-bot-v2/` and fill in your credentials:
+Copy [`.env.example`](spotify-telegram-bot-v2/.env.example) to `.env` in `spotify-telegram-bot-v2/` and fill in your credentials:
 
 ```env
 SPOTIPY_CLIENT_ID=your_spotify_client_id
@@ -304,7 +302,7 @@ SPOTIPY_REDIRECT_URI=http://127.0.0.1:8888/callback
 TELEGRAM_ACCESS_TOKEN=your_telegram_bot_token
 
 # Single-user private mode & default Party Host (your personal numeric Telegram user ID)
-ALLOWED_TELEGRAM_USER_IDS=1112011623
+ALLOWED_TELEGRAM_USER_IDS=123456789
 
 # Optional Tier-3 fallback (LRCLIB & Lyrics.ovh require no keys)
 GENIUS_ACCESS_TOKEN=
@@ -357,7 +355,7 @@ All dependencies and APIs used in this project are **100% free, open-source, and
 - **Comprehensive `/help` Compendium Overhaul**:
   - Upgraded the `/help` guide to comprehensively enumerate every single menu command categorized into *Melodic Curation & Playback Deck*, *Salon Party Mode*, and *General & Assistance*, alongside instant direct text shortcuts (`~`, `*`, `!`).
 - **Repository Cleanup & Security Hardening**:
-  - Removed unused legacy prototype `server.py` and `Flask` dependency; added [`.env.example`](file:///Users/gin/Documents/spotify/spotify-telegram-bot-v2/.env.example).
+  - Removed unused legacy prototype `server.py` and `Flask` dependency; added [`.env.example`](spotify-telegram-bot-v2/.env.example).
 
 ### [v2.3.0] — November 7, 2026
 - **Live Party Mode (`/host`, `/join`, `/party`, `/leave`, `/endparty`)**:
@@ -566,7 +564,7 @@ This section details the exact queries, filters, API endpoints, deduplication st
 
 ## 📖 Architecture & Function Reference
 
-A concise reference guide to every core function implemented in [`main.py`](file:///Users/gin/Documents/spotify/spotify-telegram-bot-v2/main.py):
+A concise reference guide to every core function implemented in [`main.py`](spotify-telegram-bot-v2/main.py):
 
 ### 1. Security, Party Auth & Lifecycle
 - `is_host(user)` — Returns `True` if the Telegram user is the master bot owner (`ALLOWED_USER_IDS`) or the designated host of the active party.
@@ -684,14 +682,14 @@ A complete engineering record of issues diagnosed, investigated, and resolved du
 ### 2. Expired / Revoked Spotify Token (`invalid_grant`)
 - **Symptom**: `spotipy.oauth2.SpotifyOauthError: error: invalid_grant, error_description: Refresh token revoked` causing `A chart-topping tune could not be retrieved right now`.
 - **Cause**: The `.cache` file copied from the older repository contained an expired/revoked session token from an earlier year. Spotipy crashed when attempting to refresh an invalid grant.
-- **Fix**: Removed stale `.cache`, created the [`auth.py`](file:///Users/gin/Documents/spotify/spotify-telegram-bot-v2/auth.py) authentication helper to generate fresh credentials with full playback scopes, and added error trapping with helpful prompts in `main.py`.
+- **Fix**: Removed stale `.cache`, created the [`auth.py`](spotify-telegram-bot-v2/auth.py) authentication helper to generate fresh credentials with full playback scopes, and added error trapping with helpful prompts in `main.py`.
 
 ---
 
 ### 3. Port 8888 Collision & IPv6 Connection Refused
 - **Symptom**: `OSError: [Errno 48] Address already in use` or browser displaying *"This site can’t be reached (localhost refused to connect)"*.
 - **Cause**: Spotipy's default `open_browser=True` launches an internal `HTTPServer` on port `8888`. If port 8888 was lingering from a previous script, it crashed with `Errno 48`. When browsers attempted to connect via IPv6 `[::1]:8888`, the connection was refused.
-- **Fix**: Re-architected [`auth.py`](file:///Users/gin/Documents/spotify/spotify-telegram-bot-v2/auth.py) with `open_browser=False` to eliminate port binding entirely. Instead, the script opens the browser to Spotify's login page and prompts you to copy/paste the redirected address bar URL directly into the terminal, parsing the authorization code cleanly.
+- **Fix**: Re-architected [`auth.py`](spotify-telegram-bot-v2/auth.py) with `open_browser=False` to eliminate port binding entirely. Instead, the script opens the browser to Spotify's login page and prompts you to copy/paste the redirected address bar URL directly into the terminal, parsing the authorization code cleanly.
 
 ---
 
@@ -728,7 +726,7 @@ A complete engineering record of issues diagnosed, investigated, and resolved du
 
 ### 7. Playback Failing to Start (`Application isn’t running. (-600)`)
 - **Symptom**: Clicking Play showed successful API calls, but no music played through speakers.
-- **Cause**: Spotify's cloud API reported `"gin's mac"` as a registered device from a previous session, but the Spotify desktop application (`/Applications/Spotify.app`) was completely closed on macOS.
+- **Cause**: Spotify's cloud API reported `"My MacBook"` as a registered device from a previous session, but the Spotify desktop application (`/Applications/Spotify.app`) was completely closed on macOS.
 - **Fix**:
   1. Verified that the Spotify desktop application must be open to receive audio output.
   2. Integrated a native macOS AppleScript bridge (`macos_spotify_cmd`) inside `main.py` as an immediate local fallback to command Spotify directly on macOS (`tell application "Spotify" to play...`) alongside cloud Web API calls.
@@ -739,7 +737,7 @@ A complete engineering record of issues diagnosed, investigated, and resolved du
 - **Symptom / Security Inquiry**: *"Can anyone who has access to the bot link use the bot? Will it overlap with mine?"*
 - **Risk**: In Telegram, bots with public `@username` handles accept messages from anyone who opens a chat with them. Because the bot server is authenticated to your single personal Spotify account via OAuth, any stranger with the bot handle could send commands to change your songs, adjust volume, or modify your saved playlists.
 - **Fix**:
-  1. Implemented a strict authorization guard via `ALLOWED_TELEGRAM_USER_IDS` in `.env` (configured with your personal Telegram ID `1112011623`).
+  1. Implemented a strict authorization guard via `ALLOWED_TELEGRAM_USER_IDS` in `.env` (configured with your personal numeric Telegram ID, e.g. `123456789`).
   2. Guarded all Telegram entry points (`/start`, `/select`, `/controls`, `/nowplaying`, `/devices`, `/help`), direct text handlers (`~`, `*`, `!`), and inline button clicks (`handle_button_callback`) using `is_user_authorized()`.
   3. Any unauthorized user who messages the bot is rejected with a Bridgerton-themed notice (*"Dearest Gentle Traveler, I am afraid this private musical salon is reserved exclusively for its master..."*) and their commands are dropped before touching Spotify.
 
@@ -762,7 +760,7 @@ A complete engineering record of issues diagnosed, investigated, and resolved du
   1. **Bare Track URIs wiping playback buffer**: On Spotify Desktop and Spotify Connect, invoking `sp.start_playback(uris=["spotify:track:..."])` without album context while shuffle or repeat is active destroys the player's active queue buffer, causing Spotify to clear all playback (`item: None`, `is_playing: False`).
   2. **Unplayable / Region-Locked Searches**: Random query searches (`%a%`) without `market="from_token"` could occasionally return tracks not licensed for streaming in the user's country.
 - **Fix**:
-  1. Updated [`play_and_display_track`](file:///Users/gin/Documents/spotify/spotify-telegram-bot-v2/main.py#L1055-L1135) to stream tracks with their album context and track offset: `context_uri=target_album, offset={"uri": track_uri}`. This preserves the player's buffer, starts the target song immediately, and keeps `is_playing: True`.
+  1. Updated [`play_and_display_track`](spotify-telegram-bot-v2/main.py#L1055-L1135) to stream tracks with their album context and track offset: `context_uri=target_album, offset={"uri": track_uri}`. This preserves the player's buffer, starts the target song immediately, and keeps `is_playing: True`.
   2. Updated `serendipitys_choice()` to search with `market="from_token"` and filter only playable items (`is_playable: True`).
   3. Integrated `wait_for_track_change(target_track_id=track_id)` for atomic verification before sending the live Now Playing card and controls deck.
 
