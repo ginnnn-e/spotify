@@ -15,15 +15,16 @@
    - [Immediate Auto-Playback & Atomic Sync](#3-immediate-auto-playback-on-recommendation--discovery)
    - [Optional: Live Listening Party Mode (`/host` & `/join`)](#4-live-listening-party-mode--room-code-sharing-host--join)
 4. [💬 Bot Commands & Direct Text Shortcuts](#-bot-commands--shortcuts)
-5. [🚀 Getting Started & Installation](#-getting-started)
-6. [⚖️ Ethical & Open-Source Libraries](#️-ethical--open-source-libraries)
-7. [📜 Changelog & Version History](#-changelog--version-history)
+5. [📸 Demo & Interface Walkthrough](#-demo--interface-walkthrough)
+6. [🚀 Getting Started & Installation](#-getting-started)
+7. [⚖️ Ethical & Open-Source Libraries](#️-ethical--open-source-libraries)
+8. [📜 Changelog & Version History](#-changelog--version-history)
 
 ### Part II — Technical Deep Dives & Engineering Logs
-8. [🔍 Deep Dive: Spotify API Search & Retrieval Mechanics](#-deep-dive-spotify-api-search--retrieval-mechanics)
-9. [📖 Architecture & Function-by-Function Reference](#-architecture--function-reference)
-10. [🔮 Future Work & Multi-Tenant SaaS Scaling Roadmap](#-future-work--multi-tenant-saas-scaling-roadmap)
-11. [🛠 Engineering Post-Mortems & Troubleshooting Log (Items 1–11)](#-troubleshooting--bug-fixes-log)
+9. [🔍 Deep Dive: Spotify API Search & Retrieval Mechanics](#-deep-dive-spotify-api-search--retrieval-mechanics)
+10. [📖 Architecture & Function-by-Function Reference](#-architecture--function-reference)
+11. [🔮 Future Work & Multi-Tenant SaaS Scaling Roadmap](#-future-work--multi-tenant-saas-scaling-roadmap)
+12. [🛠 Engineering Post-Mortems & Troubleshooting Log (Items 1–11)](#-troubleshooting--bug-fixes-log)
 
 ---
 
@@ -225,6 +226,55 @@ You can type these at any time in the chat (or simply type without a prefix righ
 - `~Cruel Summer Taylor Swift` — Search for a specific song (*A Harmonious Find*)
 - `*saudade` — Curate a track for your mood (*A Melody for Your Spirits*)
 - `!Laufey` — Play music by a specific artist (*Tracks from a Beloved Maestro*)
+
+---
+
+## 📸 Demo & Interface Walkthrough
+
+Below is a preview of how **The Baroness** looks and responds inside Telegram across curation, playback control, lyrics, and party mode:
+
+<!-- 
+  📌 TO ADD SCREENSHOTS OR A DEMO GIF:
+  Drop your files into `spotify-telegram-bot-v2/assets/` (e.g., `demo.gif`, `menu.png`, `controls.png`, `lyrics.png`)
+  and uncomment the block below!
+-->
+<!--
+<p align="center">
+  <img src="assets/demo.gif" alt="The Baroness Live Demo" width="720" />
+</p>
+<p align="center">
+  <img src="assets/menu.png" alt="Main Curation Menu" width="260" />
+  <img src="assets/controls.png" alt="15-Button Playback Deck" width="260" />
+  <img src="assets/lyrics.png" alt="Instant Lyrics View" width="260" />
+</p>
+-->
+
+```
+┌──────────────────────────────────────────────┐   ┌──────────────────────────────────────────────┐
+│ 🌹 THE BARONESS — MAIN SALON MENU (/select)  │   │ 🎛 LIVE SPOTLIGHT CARD & 15-BUTTON DECK      │
+├──────────────────────────────────────────────┤   ├──────────────────────────────────────────────┤
+│ "Your melodic journey awaits! Indulge us     │   │ Dearest Gentle Listener,                     │
+│  with your selection."                       │   │                 ✦ ✦ ✦                        │
+│                                              │   │              Cruel Summer                    │
+│  [   A Chart-Topping Number ♭            ]   │   │             by Taylor Swift                  │
+│  [   A Harmonious Find ♯                 ]   │   │               Album: Lover                   │
+│  [   A Melody for Your Spirits ♮         ]   │   │                 ✦ ✦ ✦                        │
+│  [   Tracks from a Beloved Maestro ♪     ]   │   │ ▶ [1:14 / 2:58]                              │
+│  [   Tracks from a Personal Collection 𝄢 ]   │   │ 📱 Gin's MacBook Pro • Vol 70% • 🔀 Off • 🔁 │
+│  [   Serendipity's Choice ☾              ]   │   │                                              │
+│  [   ✧ In the Spotlight (Now Playing)    ]   │   │ [ ⏮ Prev ]  [ ⏯ Play / Pause ]  [ ⏭ Next ]  │
+│  [   🎛 Open Playback Controls            ]   │   │ [ 🔀 Shuf] [ 🔁 Rep ] [ 🔉 -10%] [ 🔊 +10% ]  │
+└──────────────────────────────────────────────┘   │ [ >> Queue ] [ ❥ Save/Unsave ] [ + Playlist] │
+                                                   │ [ ✿ Similar] [ ❀ Maestro Best] [ 𝛂 Lyrics  ] │
+                                                   │ [ ✧ Spotlt ] [ 📱 Devices    ] [ 📜 Menu   ] │
+                                                   └──────────────────────────────────────────────┘
+```
+
+### Typical 30-Second Workflow:
+1. **Pick a Vibe or Search:** Tap `A Melody for Your Spirits ♮` $\rightarrow$ choose `🌙 Midnight Reverie` (or type `~Cruel Summer`).
+2. **Music Plays Immediately:** Your Spotify Desktop/Phone player switches to the curated track right away while preserving your queue buffer.
+3. **Control Everything Inline:** Use the 15-button deck to adjust volume (`🔉 -10%` / `🔊 +10%`), save to Liked Songs (`❥`), add to a personal playlist, or pull up full lyrics (`𝛂 Lyrics`) in ~300ms.
+4. **Host a Gathering (Optional):** Type `/host` to generate a 4-digit PIN and 1-click invite link so friends can queue songs from their own phones.
 
 ---
 
