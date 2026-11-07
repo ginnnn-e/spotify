@@ -256,6 +256,11 @@ Below is a live walkthrough and labeled interface showcase of **The Baroness (`@
 | <img src="spotify-telegram-bot-v2/assets/02_welcome_and_main_menu.jpg" alt="02 - Welcome & Main Curation Menu" width="270" /> | <img src="spotify-telegram-bot-v2/assets/03_now_playing_and_control_deck.jpg" alt="03 - Now Playing Card & 15-Button Control Deck" width="270" /> | <img src="spotify-telegram-bot-v2/assets/04_instant_lyrics_display.jpg" alt="04 - Instant Formatted Lyrics View" width="270" /> |
 | *The Baroness welcomes you with a custom Regency letter and presents all 7 curation modes plus quick access to the Control Deck.* | *Selecting a mode immediately starts playback on your active Spotify device, displays live progress/device/volume metadata, and summons the 15-button remote.* | *Tapping `𝛂 Lyrics` retrieves clean, paragraph-chunked lyrics in ~300ms via the 3-tier REST pipeline.* |
 
+| **Step 4: Personal Playlist Collection (`Tracks from a Personal Collection 𝄢`)** | **Step 5: Artist Discovery & Direct Text Shortcut (`!ive`)** |
+| :---: | :---: |
+| <img src="spotify-telegram-bot-v2/assets/05_personal_playlist_collection.jpg" alt="05 - Tracks from a Personal Collection" width="270" /> | <img src="spotify-telegram-bot-v2/assets/06_beloved_maestro_artist_playback.jpg" alt="06 - Beloved Maestro Artist Search & Playback" width="270" /> |
+| *Fetches your own Spotify playlists dynamically and renders them as interactive inline buttons so you can spin a random track from any personal collection.* | *Using `Tracks from a Beloved Maestro ♪` or the `!artist` shortcut (`!ive`) delivers a Regency commentary, high-res artist portrait card, and immediate playback of a standout track.* |
+
 ### Typical 30-Second Workflow:
 1. **Pick a Vibe or Search:** Tap `A Chart-Topping Number ♭` or `A Melody for Your Spirits ♮` (or type `~Cruel Summer`).
 2. **Music Plays Immediately:** Your Spotify Desktop/Phone player switches to the curated track right away while preserving your queue buffer.
