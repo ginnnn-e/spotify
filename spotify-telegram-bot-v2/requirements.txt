@@ -1,0 +1,6 @@
+python-telegram-bot>=21.3
+spotipy>=2.24.0
+python-dotenv
+lyricsgenius
+requests>=2.32.3
+
