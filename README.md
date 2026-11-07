@@ -231,47 +231,33 @@ You can type these at any time in the chat (or simply type without a prefix righ
 
 ## 📸 Demo & Interface Walkthrough
 
-Below is a preview of how **The Baroness** looks and responds inside Telegram across curation, playback control, lyrics, and party mode:
+Below is a live walkthrough and labeled interface showcase of **The Baroness (`@thebaroness_bot`)** in action inside Telegram:
 
-<!-- 
-  📌 TO ADD SCREENSHOTS OR A DEMO GIF:
-  Drop your files into `spotify-telegram-bot-v2/assets/` (e.g., `demo.gif`, `menu.png`, `controls.png`, `lyrics.png`)
-  and uncomment the block below!
--->
-<!--
+### 1. Bot Identity & Persona (`@thebaroness_bot`)
 <p align="center">
-  <img src="assets/demo.gif" alt="The Baroness Live Demo" width="720" />
+  <img src="spotify-telegram-bot-v2/assets/01_bot_profile.png" alt="01 - The Baroness Bot Profile" width="440" />
 </p>
-<p align="center">
-  <img src="assets/menu.png" alt="Main Curation Menu" width="260" />
-  <img src="assets/controls.png" alt="15-Button Playback Deck" width="260" />
-  <img src="assets/lyrics.png" alt="Instant Lyrics View" width="260" />
-</p>
--->
 
-```
-┌──────────────────────────────────────────────┐   ┌──────────────────────────────────────────────┐
-│ 🌹 THE BARONESS — MAIN SALON MENU (/select)  │   │ 🎛 LIVE SPOTLIGHT CARD & 15-BUTTON DECK      │
-├──────────────────────────────────────────────┤   ├──────────────────────────────────────────────┤
-│ "Your melodic journey awaits! Indulge us     │   │ Dearest Gentle Listener,                     │
-│  with your selection."                       │   │                 ✦ ✦ ✦                        │
-│                                              │   │              Cruel Summer                    │
-│  [   A Chart-Topping Number ♭            ]   │   │             by Taylor Swift                  │
-│  [   A Harmonious Find ♯                 ]   │   │               Album: Lover                   │
-│  [   A Melody for Your Spirits ♮         ]   │   │                 ✦ ✦ ✦                        │
-│  [   Tracks from a Beloved Maestro ♪     ]   │   │ ▶ [1:14 / 2:58]                              │
-│  [   Tracks from a Personal Collection 𝄢 ]   │   │ 📱 Gin's MacBook Pro • Vol 70% • 🔀 Off • 🔁 │
-│  [   Serendipity's Choice ☾              ]   │   │                                              │
-│  [   ✧ In the Spotlight (Now Playing)    ]   │   │ [ ⏮ Prev ]  [ ⏯ Play / Pause ]  [ ⏭ Next ]  │
-│  [   🎛 Open Playback Controls            ]   │   │ [ 🔀 Shuf] [ 🔁 Rep ] [ 🔉 -10%] [ 🔊 +10% ]  │
-└──────────────────────────────────────────────┘   │ [ >> Queue ] [ ❥ Save/Unsave ] [ + Playlist] │
-                                                   │ [ ✿ Similar] [ ❀ Maestro Best] [ 𝛂 Lyrics  ] │
-                                                   │ [ ✧ Spotlt ] [ 📱 Devices    ] [ 📜 Menu   ] │
-                                                   └──────────────────────────────────────────────┘
-```
+---
+
+### 2. End-to-End Live Walkthrough (Animated GIF)
+> *Watch The Baroness greet the listener, curate a track from the global charts, stream it immediately to Spotify Desktop, render the 15-button playback control deck, and fetch full lyrics in real time:*
+
+<p align="center">
+  <img src="spotify-telegram-bot-v2/assets/00_live_demo_walkthrough.gif" alt="00 - Live Demo Walkthrough GIF" width="380" />
+</p>
+
+---
+
+### 3. Labeled Interface Screenshots (Step-by-Step)
+
+| **Step 1: Regency Greeting & Main Menu (`/start`)** | **Step 2: Now Playing Card & 15-Button Control Deck** | **Step 3: Instant Lyrics View (`𝛂 Lyrics`)** |
+| :---: | :---: | :---: |
+| <img src="spotify-telegram-bot-v2/assets/02_welcome_and_main_menu.jpg" alt="02 - Welcome & Main Curation Menu" width="270" /> | <img src="spotify-telegram-bot-v2/assets/03_now_playing_and_control_deck.jpg" alt="03 - Now Playing Card & 15-Button Control Deck" width="270" /> | <img src="spotify-telegram-bot-v2/assets/04_instant_lyrics_display.jpg" alt="04 - Instant Formatted Lyrics View" width="270" /> |
+| *The Baroness welcomes you with a custom Regency letter and presents all 7 curation modes plus quick access to the Control Deck.* | *Selecting a mode immediately starts playback on your active Spotify device, displays live progress/device/volume metadata, and summons the 15-button remote.* | *Tapping `𝛂 Lyrics` retrieves clean, paragraph-chunked lyrics in ~300ms via the 3-tier REST pipeline.* |
 
 ### Typical 30-Second Workflow:
-1. **Pick a Vibe or Search:** Tap `A Melody for Your Spirits ♮` $\rightarrow$ choose `🌙 Midnight Reverie` (or type `~Cruel Summer`).
+1. **Pick a Vibe or Search:** Tap `A Chart-Topping Number ♭` or `A Melody for Your Spirits ♮` (or type `~Cruel Summer`).
 2. **Music Plays Immediately:** Your Spotify Desktop/Phone player switches to the curated track right away while preserving your queue buffer.
 3. **Control Everything Inline:** Use the 15-button deck to adjust volume (`🔉 -10%` / `🔊 +10%`), save to Liked Songs (`❥`), add to a personal playlist, or pull up full lyrics (`𝛂 Lyrics`) in ~300ms.
 4. **Host a Gathering (Optional):** Type `/host` to generate a 4-digit PIN and 1-click invite link so friends can queue songs from their own phones.
